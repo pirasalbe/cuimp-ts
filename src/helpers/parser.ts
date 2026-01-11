@@ -301,9 +301,10 @@ const downloadAndExtractBinary = async (
     // Construct download URL with correct naming convention
     let assetName: string
     if (platform === 'linux') {
-      // Linux uses specific naming: x86_64-linux-gnu, aarch64-linux-gnu, etc.
-      const linuxArch = architecture === 'x64' ? 'x86_64' : 'aarch64'
-      assetName = `curl-impersonate-${latestVersion}.${linuxArch}-linux-gnu.tar.gz`
+      // Linux uses specific naming: x86_64-linux-gnu, aarch64-linux-gnu, arm-linux-gnueabihf, etc.
+      const specification = architecture === 'arm' ? 'gnueabihf' : 'gnu'
+      const linuxArch = specification === 'gnu' ? 'x86_64' : 'aarch64'
+      assetName = `curl-impersonate-${latestVersion}.${linuxArch}-linux-${specification}.tar.gz`
     } else if (platform === 'macos') {
       // macos uses specific naming: x86_64-macos, arm64-macos, etc.
       const macosArch = architecture === 'x64' ? 'x86_64' : 'arm64'
