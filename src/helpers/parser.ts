@@ -465,6 +465,7 @@ const getSystemInfo = (): { architecture: string; platform: string } => {
   const archMap: Record<string, string> = {
     x64: 'x64',
     x86_64: 'x64',
+    arm: 'arm',
     arm64: 'arm64',
     aarch64: 'arm64',
   }
